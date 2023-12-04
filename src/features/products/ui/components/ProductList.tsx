@@ -7,7 +7,7 @@ import { ProductCard } from "./ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
 
 const ProductListView: React.FC = () => {
-  const { isLoading, isError, getProducts, products } =
+  const { isLoading, isError, getProducts, query, products } =
     useStore<ProductStore>("productStore");
 
   useQuery("products", getProducts);
@@ -23,11 +23,17 @@ const ProductListView: React.FC = () => {
   return (
     <Container>
       <Row xs={2} md={4} lg={6}>
-        {products.map((product) => (
-          <Col key={product.id} className="p-2">
-            <ProductCard product={product} />
-          </Col>
-        ))}
+        {products
+          .filter((product) =>
+            product.title
+              .toLocaleLowerCase()
+              .includes(query.toLocaleLowerCase())
+          )
+          .map((product) => (
+            <Col key={product.id} className="p-2">
+              <ProductCard product={product} />
+            </Col>
+          ))}
       </Row>
     </Container>
   );

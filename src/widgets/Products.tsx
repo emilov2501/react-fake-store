@@ -1,4 +1,16 @@
 import React from "react";
-import { ProductList } from "../features/products";
+import { ProductList, ProductSearch } from "../features/products";
+import { Container, Row } from "react-bootstrap";
 
-export const Products: React.FC = () => <ProductList />;
+export const Products: React.FC = () => {
+  return (
+    <Container>
+      <Row>
+        <div className="p-2 pb-1">
+          <ProductSearch />
+        </div>
+        <ProductList />
+      </Row>
+    </Container>
+  );
+};

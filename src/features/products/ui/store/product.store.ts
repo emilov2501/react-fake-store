@@ -8,11 +8,13 @@ export class ProductStore extends AsyncDataStatus {
     super();
     makeObservable(this, {
       status: observable,
+      query: observable,
       products: observable,
     });
   }
 
   products: ProductModel[] = [];
+  query: string = "";
 
   getProducts = async () => {
     runInAction(() => (this.status = DataStatus.loading));
@@ -25,5 +27,9 @@ export class ProductStore extends AsyncDataStatus {
     } catch (e) {
       runInAction(() => (this.status = DataStatus.failure));
     }
+  };
+
+  searchProduct = (query: string) => {
+    runInAction(() => (this.query = query));
   };
 }
