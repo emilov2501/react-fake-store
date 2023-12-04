@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Products } from "../../widgets/Products";
-import { AppBar, Icon, IconButton } from "../../core/ui";
-import { Container, Row } from "react-bootstrap";
+import { AppBar, Icon, IconButton, Scaffold } from "../../core/ui";
 import { ProductSearch } from "../../features/products";
 import { SideBar } from "../../widgets/Sidebar";
 
@@ -9,15 +8,16 @@ export const ProductPage: React.FC = () => {
   const [show, setShow] = useState(false);
 
   return (
-    <div>
+    <>
       <SideBar
         show={show}
         appBarTitle="Menu"
         close={() => setShow(false)}
         items={["Profile", "Cart", "Settings", "Log out"]}
       />
-      <Container fluid>
-        <Row>
+
+      <Scaffold
+        appBar={
           <AppBar
             actions={[
               <IconButton
@@ -29,9 +29,9 @@ export const ProductPage: React.FC = () => {
           >
             <ProductSearch />
           </AppBar>
-          <Products />
-        </Row>
-      </Container>
-    </div>
+        }
+        body={<Products />}
+      />
+    </>
   );
 };

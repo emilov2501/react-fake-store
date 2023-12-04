@@ -13,9 +13,9 @@ export const CategoryList: React.FC = () => {
   useQuery("categories", getCategories);
 
   return (
-    <Row xs={1}>
+    <Row xs={1} className="mt-3">
       {categories.map((category) => (
-        <Col>
+        <Col key={category.title}>
           <Link
             to={`categories/${category.title}`}
             state={{ cat: category.title }}

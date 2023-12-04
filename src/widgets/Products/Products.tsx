@@ -1,14 +1,19 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
-
 import { ProductList } from "../../features/products";
 import { CategoryBreadcrumbs } from "../../features/categories";
+import { ThemeSwitcher } from "../../features/settings";
+
+import "./Products.css";
+import { Container, Row } from "react-bootstrap";
 
 export const Products: React.FC = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <CategoryBreadcrumbs />
+        <div className="top-header">
+          <CategoryBreadcrumbs />
+          <ThemeSwitcher />
+        </div>
         <ProductList />
       </Row>
     </Container>

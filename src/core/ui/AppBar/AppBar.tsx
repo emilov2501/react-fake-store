@@ -13,10 +13,10 @@ export const AppBar: React.FC<AppBarProps> = ({
   actions = [],
   children,
   color,
-  fluid,
+  fluid = true,
 }) => {
   const rowStyles = {
-    backgroundColor: color ? color : "white",
+    backgroundColor: color ? color : "#29B6F6",
   };
 
   return (

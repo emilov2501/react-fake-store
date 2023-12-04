@@ -37,7 +37,7 @@ const ProductListView: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container fluid>
       <Row xs={2} md={4} lg={6}>
         {products.filter(toSearch).map((product) => (
           <Col key={product.id} className="p-2">

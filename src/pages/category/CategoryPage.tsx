@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AppBar, Icon, IconButton, Text } from "../../core/ui";
+import { AppBar, Icon, IconButton, Scaffold, Text } from "../../core/ui";
 import { Container, Row } from "react-bootstrap";
 
 import { SideBar } from "../../widgets/Sidebar";
@@ -9,15 +9,16 @@ export const CategoryPage: React.FC = () => {
   const [show, setShow] = useState(false);
 
   return (
-    <div>
+    <>
       <SideBar
         show={show}
         appBarTitle="Menu"
         close={() => setShow(false)}
         items={["Profile", "Cart", "Settings", "Log out"]}
       />
-      <Container fluid>
-        <Row>
+
+      <Scaffold
+        appBar={
           <AppBar
             actions={[
               <IconButton
@@ -29,9 +30,15 @@ export const CategoryPage: React.FC = () => {
           >
             <Text>Categories</Text>
           </AppBar>
-          <CategoryList />
-        </Row>
-      </Container>
-    </div>
+        }
+        body={
+          <Container fluid>
+            <Row>
+              <CategoryList />
+            </Row>
+          </Container>
+        }
+      />
+    </>
   );
 };
