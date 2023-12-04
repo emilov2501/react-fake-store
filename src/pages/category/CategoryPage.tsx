@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { AppBar, Icon, IconButton } from "../../core/ui";
+import { AppBar, Icon, IconButton, Text } from "../../core/ui";
 import { Container, Row } from "react-bootstrap";
-import { ProductSearch } from "../../features/products";
+
 import { SideBar } from "../../widgets/Sidebar";
 import { CategoryList } from "../../features/categories";
 
@@ -27,7 +27,7 @@ export const CategoryPage: React.FC = () => {
               />,
             ]}
           >
-            <ProductSearch />
+            <Text>Categories</Text>
           </AppBar>
           <CategoryList />
         </Row>
