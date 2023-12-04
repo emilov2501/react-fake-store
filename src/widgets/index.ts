@@ -1,1 +1,2 @@
-export { Products } from "./Products";
+export * from "./Products";
+export * from "./Sidebar";

@@ -4,13 +4,27 @@ import "./AppBar.css";
 
 interface AppBarProps {
   actions?: ReactElement[];
+  color?: string;
+  fluid?: boolean;
   children?: React.ReactNode;
 }
 
-export const AppBar: React.FC<AppBarProps> = ({ actions = [], children }) => {
+export const AppBar: React.FC<AppBarProps> = ({
+  actions = [],
+  children,
+  color,
+  fluid,
+}) => {
+  const rowStyles = {
+    backgroundColor: color ? color : "transparent",
+  };
+
   return (
-    <Container>
-      <Row className="align-items-center justify-content-center app-bar">
+    <Container fluid={fluid}>
+      <Row
+        className="align-items-center justify-content-center app-bar"
+        style={rowStyles}
+      >
         <Col>
           <div className="body">{children}</div>
         </Col>
