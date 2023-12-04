@@ -14,4 +14,15 @@ export class ProductRepositoryImpl implements ProductRepository {
       throw new AxiosError(`GET_PRODUCTS: ${e}`);
     }
   }
+
+  async getProductsByCategory(category: string): Promise<ProductModel[]> {
+    try {
+      const response = await this.productApiService.getProductsByCategory(
+        category
+      );
+      return response.data.map((product) => ProductModel.fromJSON(product));
+    } catch (e) {
+      throw new AxiosError(`GET_PRODUCTS_BY_CATEGORY: ${e}`);
+    }
+  }
 }

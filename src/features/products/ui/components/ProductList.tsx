@@ -6,12 +6,18 @@ import { useQuery } from "react-query";
 import { ProductCard } from "./ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
 import { ProductModel } from "../../domain/product.model";
+import { useLocation } from "react-router-dom";
 
 const ProductListView: React.FC = () => {
-  const { isLoading, isError, getProducts, query, products } =
+  const loc = useLocation();
+  const currentCategory = loc.state?.cat;
+
+  const { isLoading, isError, getProductsByCategory, query, products } =
     useStore<ProductStore>("productStore");
 
-  useQuery("products", getProducts);
+  useQuery(["products", currentCategory], () =>
+    getProductsByCategory({ category: currentCategory })
+  );
 
   const toSearch = useCallback(
     (product: ProductModel) => {

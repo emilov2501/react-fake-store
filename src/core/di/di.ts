@@ -12,6 +12,7 @@ import { CategoryApiService } from "../../features/categories/data/api/category.
 import { CategoryRepository } from "../../features/categories/domain/category.repository";
 import { CategoryRepositoryImpl } from "../../features/categories/data/repository_impl/category.repository_impl";
 import { CategoryService } from "../../features/categories/domain/category.service";
+import { CategoryStore } from "../../features/categories/ui/store/category.store";
 
 export const DI = createContainer({
   injectionMode: InjectionMode.CLASSIC,
@@ -41,8 +42,10 @@ DI.register({
 
   // Stores
   productStore: asClass<ProductStore>(ProductStore).scoped().proxy(),
+  categoryStore: asClass<CategoryStore>(CategoryStore).scoped().proxy(),
 });
 
 injectStores({
   productStore: DI.cradle.productStore,
+  categoryStore: DI.cradle.categoryStore,
 });

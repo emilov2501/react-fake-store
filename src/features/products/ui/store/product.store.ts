@@ -29,6 +29,21 @@ export class ProductStore extends AsyncDataStatus {
     }
   };
 
+  getProductsByCategory = async ({ category }: { category: string }) => {
+    runInAction(() => (this.status = DataStatus.loading));
+    try {
+      const products = await this.di.productService.getProductsByCategory(
+        category
+      );
+      runInAction(() => {
+        this.products = products;
+        this.status = DataStatus.success;
+      });
+    } catch (e) {
+      runInAction(() => (this.status = DataStatus.failure));
+    }
+  };
+
   searchProduct = (query: string) => {
     runInAction(() => (this.query = query));
   };

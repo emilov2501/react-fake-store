@@ -5,17 +5,19 @@ import { StrictMode } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "react-query";
-import { HomePage } from "./pages/home/HomePage.tsx";
+import { CategoryPage } from "./pages/category/CategoryPage.tsx";
+import { ProductPage } from "./pages/product/ProductPage.tsx";
 
 const clinet = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  defaultOptions: { queries: { refetchOnWindowFocus: true } },
 });
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={clinet}>
     <BrowserRouter>
       <StrictMode>
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/" element={<CategoryPage />}></Route>
+          <Route path="/categories/:category" element={<ProductPage />}></Route>
         </Routes>
       </StrictMode>
     </BrowserRouter>
