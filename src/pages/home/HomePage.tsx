@@ -12,6 +12,7 @@ export const HomePage: React.FC = () => {
     <div>
       <SideBar
         show={show}
+        appBarTitle="Menu"
         close={() => setShow(false)}
         items={["Profile", "Cart", "Settings", "Log out"]}
       />

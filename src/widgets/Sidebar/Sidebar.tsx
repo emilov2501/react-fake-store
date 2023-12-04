@@ -24,24 +24,28 @@ export const SideBar: React.FC<SideBarProps> = ({
     }
   }, [show]);
 
-  if (show) {
-    return (
-      <div className="sidebar">
-        <AppBar color="#c2c2c2" fluid>
-          <Text>{appBarTitle}</Text>
-        </AppBar>
+  return (
+    <div
+      className="sidebar"
+      style={{
+        visibility: show ? "visible" : "hidden",
+        left: show ? "0" : "-100%",
+      }}
+    >
+      <AppBar color="#29B6F6" fluid>
+        <Text color="white" weight={600}>
+          {appBarTitle}
+        </Text>
+      </AppBar>
 
-        {items.length > 0 && (
-          <ul className="list">
-            {items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-            <li onClick={close}>Close</li>
-          </ul>
-        )}
-      </div>
-    );
-  }
-
-  return <></>;
+      {items.length > 0 && (
+        <ul className="list">
+          {items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+          <li onClick={close}>Close</li>
+        </ul>
+      )}
+    </div>
+  );
 };
