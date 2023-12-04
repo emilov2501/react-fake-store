@@ -16,11 +16,14 @@ export const AppBar: React.FC<AppBarProps> = ({
   fluid,
 }) => {
   const rowStyles = {
-    backgroundColor: color ? color : "transparent",
+    backgroundColor: color ? color : "white",
   };
 
   return (
-    <Container fluid={fluid}>
+    <Container
+      fluid={fluid}
+      style={{ position: "sticky", top: 0, zIndex: 998, ...rowStyles }}
+    >
       <Row
         className="align-items-center justify-content-center app-bar"
         style={rowStyles}
