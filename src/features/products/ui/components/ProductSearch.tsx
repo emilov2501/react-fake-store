@@ -10,9 +10,8 @@ export const ProductSearch: React.FC = () => {
   const debounceMutate = debounce(searchProduct, 200);
 
   const onChanged = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
-      debounceMutate(e.target.value);
-    },
+    (e: React.ChangeEvent<HTMLInputElement>): void =>
+      debounceMutate(e.target.value),
     []
   );
 
