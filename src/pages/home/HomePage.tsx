@@ -9,7 +9,9 @@ export const HomePage: React.FC = () => {
     <Container fluid>
       <Row>
         <AppBar
-          actions={[<IconButton onPressed={() => {}} icon={Icon.burger} size={30} />]}
+          actions={[
+            <IconButton onPressed={() => {}} icon={Icon.burger} size={30} />,
+          ]}
         >
           <ProductSearch />
         </AppBar>
