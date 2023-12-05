@@ -1,18 +1,23 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import "./Sidebar.css";
 import { Text } from "../../core/ui";
 import { AppBar } from "../../core/ui";
 
+type Slide = "left" | "right";
 interface SideBarProps {
   items?: string[];
   show: boolean;
   close: () => void;
   appBarTitle?: string;
+  appBarAction?: ReactElement[];
+  slide?: Slide;
 }
 
 export const SideBar: React.FC<SideBarProps> = ({
   items = [],
   show,
+  appBarAction = [],
+  slide = "left",
   appBarTitle = "Title",
   close,
 }) => {
@@ -24,28 +29,35 @@ export const SideBar: React.FC<SideBarProps> = ({
     }
   }, [show]);
 
-  return (
-    <div
-      className="sidebar"
-      style={{
-        visibility: show ? "visible" : "hidden",
-        left: show ? "0" : "-100%",
-      }}
-    >
-      <AppBar fluid>
-        <Text color="white" weight={600}>
-          {appBarTitle}
-        </Text>
-      </AppBar>
+  const slideDirection = {
+    [slide]: show ? "0" : "-100%",
+  };
 
-      {items.length > 0 && (
-        <ul className="list">
-          {items.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-          <li onClick={close}>Close</li>
-        </ul>
-      )}
-    </div>
+  return (
+    <>
+      {show && <div className="overlay" onClick={close}></div>}
+      <div
+        className="sidebar"
+        style={{
+          visibility: show ? "visible" : "hidden",
+          ...slideDirection,
+        }}
+      >
+        <AppBar fluid actions={appBarAction}>
+          <Text color="white" weight={600}>
+            {appBarTitle}
+          </Text>
+        </AppBar>
+
+        {items.length > 0 && (
+          <ul className="list">
+            {items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+            <li onClick={close}>Close</li>
+          </ul>
+        )}
+      </div>
+    </>
   );
 };

@@ -1,20 +1,17 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-
 import { ProductList } from "../../features/products";
-import { CategoryBreadcrumbs } from "../../features/categories";
-import { ThemeSwitcher } from "../../features/settings";
-
 import "./Products.css";
 
-export const Products: React.FC = () => {
+interface ProductsProps {
+  top: React.ReactNode;
+}
+
+export const Products: React.FC<ProductsProps> = ({ top }) => {
   return (
     <Container fluid>
       <Row>
-        <div className="top-header">
-          <CategoryBreadcrumbs />
-          <ThemeSwitcher />
-        </div>
+        {top}
         <ProductList />
       </Row>
     </Container>

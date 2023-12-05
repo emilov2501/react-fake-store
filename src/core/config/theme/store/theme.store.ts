@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Theme } from "../../../constants/theme";
+import { DEFAULT_THEME, Theme } from "../../../constants/theme";
 import { ThemeProps } from "..";
 
 export class ThemeStore implements ThemeProps {
@@ -7,7 +7,7 @@ export class ThemeStore implements ThemeProps {
     makeAutoObservable(this);
   }
 
-  theme: Theme = Theme.light;
+  theme: Theme = DEFAULT_THEME;
 
   get isDarkTheme(): boolean {
     return this.theme === Theme.dark;
