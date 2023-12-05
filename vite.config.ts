@@ -15,16 +15,17 @@ const proxy = {
 export default defineConfig({
   base: "./",
   build: {
-    sourcemap: false,
     emptyOutDir: true,
-    outDir: "dist",
-  },
-  preview: {
-    open: true,
-    port: 8080,
+    rollupOptions: {
+      output: {
+        chunkFileNames: "js/[name].[hash].js",
+        entryFileNames: "js/[name].[hash].js",
+        assetFileNames: "assets/[name].[hash].[ext]",
+      },
+    },
   },
   server: {
-    open: true,
+    port: 3000,
     proxy,
   },
   plugins: [
@@ -74,11 +75,9 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [
-      {
-        find: "assets",
-        replacement: path.resolve(__dirname, "public/icons"),
-      },
-    ],
+    alias: {
+      'awilix': 'awilix/lib/awilix.browser',
+      "@assets": path.resolve(__dirname, "public/icons"),
+    },
   },
 });

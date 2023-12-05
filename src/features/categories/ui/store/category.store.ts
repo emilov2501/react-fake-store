@@ -22,6 +22,8 @@ export class CategoryStore extends AsyncDataStatus {
         this.categories = response;
         this.status = DataStatus.success;
       });
+
+      return response;
     } catch (e) {
       runInAction(() => (this.status = DataStatus.failure));
     }

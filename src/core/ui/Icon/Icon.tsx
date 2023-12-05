@@ -1,8 +1,8 @@
 import React from "react";
 
-import Burger from "assets/burger.svg";
-import Filter from "assets/filter.svg";
-import Close from "assets/close.svg";
+import Burger from "@assets/burger.svg";
+import Filter from "@assets/filter.svg";
+import Close from "@assets/close.svg";
 
 type IconType = React.FC<React.ComponentProps<"svg">>;
 

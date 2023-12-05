@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Response } from "ts-retrofit";
 import { BaseService, BasePath, GET } from "ts-retrofit";
 import { FAKE_STORE_BASE_URL } from "../../../../core/constants/constants";

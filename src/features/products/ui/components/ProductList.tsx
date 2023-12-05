@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import React, { useCallback } from "react";
 import { ProductStore } from "../store/product.store";
 import { useStore } from "../../../../core/hooks/useStore";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { ProductCard } from "./ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
 import { ProductModel } from "../../domain/product.model";
@@ -16,9 +16,10 @@ const ProductListView: React.FC = () => {
   const { isLoading, isError, getProductsByCategory, query, products } =
     useStore<ProductStore>("productStore");
 
-  useQuery(["products", currentCategory], () =>
-    getProductsByCategory({ category: currentCategory })
-  );
+  useQuery({
+    queryKey: ["products", currentCategory],
+    queryFn: () => getProductsByCategory({ category: currentCategory }),
+  });
 
   const toSearch = useCallback(
     (product: ProductModel) => {

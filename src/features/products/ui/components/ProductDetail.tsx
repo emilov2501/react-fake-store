@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react";
 
@@ -16,7 +16,10 @@ const ProductDetailView: React.FC = () => {
   const { getProductById, product, isLoading, isError } =
     useStore<ProductStore>("productStore");
 
-  useQuery(["product", id], () => getProductById(id));
+  useQuery({
+    queryKey: ["product", id],
+    queryFn: () => getProductById(id),
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;
