@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "composite": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",

@@ -22,7 +22,10 @@ export const DI = createContainer({
 DI.register({
   // Adapters
   serviceBuilder: asFunction<ServiceBuilder>(() =>
-    new ServiceBuilder().setStandalone(true)
+    new ServiceBuilder().setLogCallback((config, response) => {
+      const log = `[${config.method}] ${config.url} ${response.status}`;
+      console.log(log); // [GET] http://localhost:12345/ping 200
+    })
   ).singleton(),
 
   // Api
