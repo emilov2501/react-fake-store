@@ -1,22 +1,26 @@
 import React, { ReactElement } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./AppBar.css";
+import { useStore } from "../../hooks/useStore";
+import { SettingStore } from "../../../features/settings";
+import { observer } from "mobx-react-lite";
 
 interface AppBarProps {
   actions?: ReactElement[];
-  color?: string;
   fluid?: boolean;
   children?: React.ReactNode;
 }
 
-export const AppBar: React.FC<AppBarProps> = ({
+export const AppBarView: React.FC<AppBarProps> = ({
   actions = [],
   children,
-  color,
+
   fluid = true,
 }) => {
+  const { isDarkTheme } = useStore<SettingStore>("settingStore");
+
   const rowStyles = {
-    backgroundColor: color ? color : "#29B6F6",
+    backgroundColor: isDarkTheme ? "#494949 " : "#29B6F6",
   };
 
   return (
@@ -44,3 +48,5 @@ export const AppBar: React.FC<AppBarProps> = ({
     </Container>
   );
 };
+
+export const AppBar = observer(AppBarView);

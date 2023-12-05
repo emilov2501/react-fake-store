@@ -7,7 +7,7 @@ export const CategoryBreadcrumbs: React.FC = () => {
 
   return (
     <div className="mt-3 mb-2">
-      <Link to={"/"}>Products</Link>
+      <Link to={"/"}>Categories</Link>
       <Text>
         {" /"} {loc.state.cat || ""}
       </Text>

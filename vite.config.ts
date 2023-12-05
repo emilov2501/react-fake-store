@@ -3,20 +3,27 @@ import * as path from "path";
 import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 
+const proxy = {
+  "/api": {
+    target: "https://fakestoreapi.com",
+    changeOrigin: true,
+    rewrite: (path) => path.replace(/^\/api/, ""),
+  },
+};
+
 export default defineConfig({
-  resolve: {
-    alias: [
-      { find: "assets", replacement: path.resolve(__dirname, "src/assets") },
-    ],
+  build: {
+    sourcemap: false,
+    emptyOutDir: true,
+  },
+  preview: {
+    open: true,
+
+    port: 8080,
+    proxy,
   },
   server: {
-    proxy: {
-      "/api": {
-        target: "https://fakestoreapi.com",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
+    proxy,
   },
   plugins: [
     svgr({
@@ -29,4 +36,9 @@ export default defineConfig({
       tsDecorators: true,
     }),
   ],
+  resolve: {
+    alias: [
+      { find: "assets", replacement: path.resolve(__dirname, "src/assets") },
+    ],
+  },
 });

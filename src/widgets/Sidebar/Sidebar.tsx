@@ -32,7 +32,7 @@ export const SideBar: React.FC<SideBarProps> = ({
         left: show ? "0" : "-100%",
       }}
     >
-      <AppBar color="#29B6F6" fluid>
+      <AppBar fluid>
         <Text color="white" weight={600}>
           {appBarTitle}
         </Text>
