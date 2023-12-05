@@ -1,12 +1,11 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
+
 import { ProductList } from "../../features/products";
 import { CategoryBreadcrumbs } from "../../features/categories";
-
+import { ThemeSwitcher } from "../../features/settings";
 
 import "./Products.css";
-import { Container, Row } from "react-bootstrap";
-import { ThemeSwitcher } from "../../core/config/theme";
-
 
 export const Products: React.FC = () => {
   return (

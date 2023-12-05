@@ -13,7 +13,7 @@ import { CategoryRepository } from "../../features/categories/domain/category.re
 import { CategoryRepositoryImpl } from "../../features/categories/data/repository_impl/category.repository_impl";
 import { CategoryService } from "../../features/categories/domain/category.service";
 import { CategoryStore } from "../../features/categories/ui/store/category.store";
-import { ThemeStore } from "../config/theme";
+import { ThemeProps, ThemeStore } from "../config/theme";
 
 export const DI = createContainer({
   injectionMode: InjectionMode.CLASSIC,
@@ -44,7 +44,7 @@ DI.register({
   // Stores
   productStore: asClass<ProductStore>(ProductStore).scoped().proxy(),
   categoryStore: asClass<CategoryStore>(CategoryStore).scoped().proxy(),
-  themeStore: asClass<ThemeStore>(ThemeStore).scoped().proxy(),
+  themeStore: asClass<ThemeProps>(ThemeStore).scoped().proxy(),
 });
 
 injectStores({

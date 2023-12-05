@@ -1,7 +1,8 @@
 import { makeAutoObservable } from "mobx";
 import { Theme } from "../../../constants/theme";
+import { ThemeProps } from "..";
 
-export class ThemeStore {
+export class ThemeStore implements ThemeProps {
   constructor() {
     makeAutoObservable(this);
   }

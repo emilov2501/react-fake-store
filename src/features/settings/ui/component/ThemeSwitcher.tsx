@@ -1,7 +1,8 @@
 import { observer } from "mobx-react";
 import Form from "react-bootstrap/Form";
-import { Theme } from "../../../constants/theme";
-import { useTheme } from "../../../hooks/useTheme";
+import { useTheme } from "../../../../core/hooks/useTheme";
+import { Theme } from "../../../../core/constants/theme";
+
 
 const ThemeSwitcherView: React.FC = () => {
   const { setTheme, theme, isDarkTheme } = useTheme();
