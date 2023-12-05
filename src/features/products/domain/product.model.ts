@@ -1,5 +1,5 @@
 import { Serializable, jsonProperty } from "ts-serializable";
-
+export type ProductId = number;
 export class RatingModel extends Serializable {
   @jsonProperty(Number)
   rate!: number;
@@ -13,7 +13,7 @@ export class ProductModel extends Serializable {
   rating!: RatingModel;
 
   @jsonProperty(Number)
-  id!: number;
+  id!: ProductId;
 
   @jsonProperty(String)
   title!: string;

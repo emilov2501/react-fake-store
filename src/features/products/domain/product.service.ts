@@ -1,4 +1,4 @@
-import { ProductModel } from "./product.model";
+import { ProductId, ProductModel } from "./product.model";
 import { ProductRepository } from "./product.repository";
 
 export class ProductService {
@@ -6,6 +6,10 @@ export class ProductService {
 
   async getProducts(): Promise<ProductModel[]> {
     return await this.productRepository.getProducts();
+  }
+
+  async getProductById(id: ProductId): Promise<ProductModel> {
+    return await this.productRepository.getProductById(id);
   }
 
   async getProductsByCategory(category: string): Promise<ProductModel[]> {
