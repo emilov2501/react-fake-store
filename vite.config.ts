@@ -22,9 +22,7 @@ export default defineConfig({
         entryFileNames: "js/[name].[hash].js",
         assetFileNames: "assets/[name].[hash].[ext]",
         manualChunks: {
-          axios: ["ts-retrofit"],
           reactVendor: ["react", "react-dom", "react-router-dom"],
-          di: ["awilix"],
         },
       },
     },
@@ -35,24 +33,8 @@ export default defineConfig({
   },
   plugins: [
     VitePWA({
-      registerType: "autoUpdate",
-      manifest: {
-        icons: [
-          {
-            src: "/icons/burger.svg",
-            type: "image/svg",
-          },
-          {
-            src: "/icons/close.svg",
-            type: "image/svg",
-          },
-          {
-            src: "/icons/filter.svg",
-            type: "image/svg",
-          },
-        ],
-      },
       workbox: {
+        globPatterns: ["**/*.{js,css,html,svg}"],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => {
@@ -70,9 +52,6 @@ export default defineConfig({
       },
     }),
     svgr({
-      svgrOptions: {
-        icon: true,
-      },
       include: "**/*.svg",
     }),
     react({
@@ -81,8 +60,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      awilix: "awilix/lib/awilix.browser",
-      "@assets": path.resolve(__dirname, "public/icons"),
+      awilix: "awilix/lib/awilix.umd",
+      "@assets": path.resolve(__dirname, "src/assets"),
     },
   },
 });
