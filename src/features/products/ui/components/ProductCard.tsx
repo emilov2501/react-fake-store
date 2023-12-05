@@ -3,11 +3,14 @@ import Card from "react-bootstrap/Card";
 import { ProductModel } from "../../domain/product.model";
 import "./styles/ProductCard.styles.css";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 interface ProductCardProps {
   product: ProductModel;
+  path: string;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
+  path,
   product: {
     image,
     title,
@@ -17,7 +20,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     <Card className="product-card">
-      <Card.Img variant="top" src={image} className="image" />
+      <Link to={path}>
+        <Card.Img variant="top" src={image} className="image" />
+      </Link>
       <Card.Body>
         <Card.Title className="title">{title}</Card.Title>
         <Card.Text className="price">${price}</Card.Text>

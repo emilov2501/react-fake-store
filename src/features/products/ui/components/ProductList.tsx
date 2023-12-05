@@ -6,10 +6,11 @@ import { useQuery } from "react-query";
 import { ProductCard } from "./ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
 import { ProductModel } from "../../domain/product.model";
-import { useLocation } from "react-router-dom";
+import { generatePath, useLocation } from "react-router-dom";
 
 const ProductListView: React.FC = () => {
   const loc = useLocation();
+
   const currentCategory = loc.state?.cat;
 
   const { isLoading, isError, getProductsByCategory, query, products } =
@@ -41,7 +42,12 @@ const ProductListView: React.FC = () => {
       <Row xs={2} md={4} lg={6}>
         {products.filter(toSearch).map((product) => (
           <Col key={product.id} className="p-2">
-            <ProductCard product={product} />
+            <ProductCard
+              product={product}
+              path={generatePath("/products/:productId", {
+                productId: product.id.toString(),
+              })}
+            />
           </Col>
         ))}
       </Row>

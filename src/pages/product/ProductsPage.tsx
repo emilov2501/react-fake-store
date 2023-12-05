@@ -4,7 +4,7 @@ import { AppBar, Icon, IconButton, Scaffold } from "../../core/ui";
 import { ProductSearch } from "../../features/products";
 import { SideBar } from "../../widgets/Sidebar";
 
-export const ProductPage: React.FC = () => {
+export const ProductsPage: React.FC = () => {
   const [show, setShow] = useState(false);
 
   return (
