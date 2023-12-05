@@ -21,6 +21,11 @@ export default defineConfig({
         chunkFileNames: "js/[name].[hash].js",
         entryFileNames: "js/[name].[hash].js",
         assetFileNames: "assets/[name].[hash].[ext]",
+        manualChunks: {
+          axios: ["ts-retrofit"],
+          reactVendor: ["react", "react-dom", "react-router-dom"],
+          di: ["awilix"],
+        },
       },
     },
   },
@@ -76,7 +81,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      'awilix': 'awilix/lib/awilix.browser',
+      awilix: "awilix/lib/awilix.browser",
       "@assets": path.resolve(__dirname, "public/icons"),
     },
   },

@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { ProductId, ProductModel } from "../../domain/product.model";
 import { ProductRepository } from "../../domain/product.repository";
 import { ProductApiService } from "../api/product.api";
@@ -11,7 +10,7 @@ export class ProductRepositoryImpl implements ProductRepository {
       const response = await this.productApiService.getProducts();
       return response.data.map((product) => ProductModel.fromJSON(product));
     } catch (e) {
-      throw new AxiosError(`GET_PRODUCTS: ${e}`);
+      throw new Error(`GET_PRODUCTS: ${e}`);
     }
   }
 
@@ -20,7 +19,7 @@ export class ProductRepositoryImpl implements ProductRepository {
       const response = await this.productApiService.getProductById(id);
       return ProductModel.fromJSON(response.data);
     } catch (e) {
-      throw new AxiosError(`GET_PRODUCTS: ${e}`);
+      throw new Error(`GET_PRODUCTS: ${e}`);
     }
   }
 
@@ -31,7 +30,7 @@ export class ProductRepositoryImpl implements ProductRepository {
       );
       return response.data.map((product) => ProductModel.fromJSON(product));
     } catch (e) {
-      throw new AxiosError(`GET_PRODUCTS_BY_CATEGORY: ${e}`);
+      throw new Error(`GET_PRODUCTS_BY_CATEGORY: ${e}`);
     }
   }
 }

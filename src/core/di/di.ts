@@ -1,6 +1,6 @@
 import { injectStores } from "@mobx-devtools/tools";
 
-import { createContainer, asClass, InjectionMode } from "awilix";
+import { createContainer, asClass, InjectionMode, asFunction } from "awilix";
 
 import { ServiceBuilder } from "ts-retrofit";
 import { ProductApiService } from "../../features/products/data/api/product.api";
@@ -21,7 +21,9 @@ export const DI = createContainer({
 
 DI.register({
   // Adapters
-  serviceBuilder: asClass<ServiceBuilder>(ServiceBuilder).singleton(),
+  serviceBuilder: asFunction<ServiceBuilder>(() =>
+    new ServiceBuilder().setStandalone(true)
+  ).singleton(),
 
   // Api
   productApiService: asClass<ProductApiService>(ProductApiService).singleton(),
@@ -47,8 +49,10 @@ DI.register({
   themeStore: asClass<ThemeProps>(ThemeStore).scoped().proxy(),
 });
 
-injectStores({
-  productStore: DI.cradle.productStore,
-  categoryStore: DI.cradle.categoryStore,
-  themeStore: DI.cradle.themeStore,
-});
+if (import.meta.env.DEV) {
+  injectStores({
+    productStore: DI.cradle.productStore,
+    categoryStore: DI.cradle.categoryStore,
+    themeStore: DI.cradle.themeStore,
+  });
+}
