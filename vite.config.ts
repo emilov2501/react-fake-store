@@ -13,27 +13,40 @@ const proxy = {
 };
 
 export default defineConfig({
-  root: "./",
+  base: "./",
   build: {
     sourcemap: false,
     emptyOutDir: true,
     outDir: "dist",
   },
-  publicDir: "assets",
   preview: {
     open: true,
-
     port: 8080,
-    proxy,
   },
   server: {
+    open: true,
     proxy,
   },
   plugins: [
     VitePWA({
       registerType: "autoUpdate",
+      manifest: {
+        icons: [
+          {
+            src: "/icons/burger.svg",
+            type: "image/svg",
+          },
+          {
+            src: "/icons/close.svg",
+            type: "image/svg",
+          },
+          {
+            src: "/icons/filter.svg",
+            type: "image/svg",
+          },
+        ],
+      },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => {
