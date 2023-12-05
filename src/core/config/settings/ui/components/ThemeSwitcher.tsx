@@ -1,8 +1,8 @@
 import Form from "react-bootstrap/Form";
-import { useStore } from "../../../../core/hooks/useStore";
+import { useStore } from "../../../../hooks/useStore";
 import { SettingStore } from "..";
 import { observer } from "mobx-react";
-import { Theme } from "../../../../core/constants/theme";
+import { Theme } from "../../../../constants/theme";
 
 const ThemeSwitcherView: React.FC = () => {
   const { setTheme, theme, isDarkTheme } = useStore<SettingStore>("settingStore");

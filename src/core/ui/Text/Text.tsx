@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import React, { ReactNode } from "react";
 import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../../features/settings";
+import { SettingStore } from "../../config/settings";
 
 interface TextProps {
   children?: ReactNode;

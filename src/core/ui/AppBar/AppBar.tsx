@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./AppBar.css";
 import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../../features/settings";
+import { SettingStore } from "../../config/settings";
 import { observer } from "mobx-react-lite";
 
 interface AppBarProps {

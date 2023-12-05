@@ -13,7 +13,7 @@ import { CategoryRepository } from "../../features/categories/domain/category.re
 import { CategoryRepositoryImpl } from "../../features/categories/data/repository_impl/category.repository_impl";
 import { CategoryService } from "../../features/categories/domain/category.service";
 import { CategoryStore } from "../../features/categories/ui/store/category.store";
-import { SettingStore } from "../../features/settings";
+import { SettingStore } from "../config/settings";
 
 export const DI = createContainer({
   injectionMode: InjectionMode.CLASSIC,

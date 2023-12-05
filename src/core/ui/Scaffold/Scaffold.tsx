@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Container, Row } from "react-bootstrap";
 import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../../features/settings";
+import { SettingStore } from "../../config/settings";
 import { Theme } from "../../constants/theme";
 import { observer } from "mobx-react";
 
