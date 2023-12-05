@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 import "./IconButton.css";
-import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../config/settings";
 import { Theme } from "../../constants/theme";
 import { observer } from "mobx-react";
+import { useTheme } from "../../hooks/useTheme";
 
 interface IconButtonProps {
   onPressed: () => void;
@@ -16,7 +15,7 @@ export const IconButtonView: React.FC<IconButtonProps> = ({
   icon: Icon,
   size = 24,
 }) => {
-  const { theme } = useStore<SettingStore>("settingStore");
+  const { theme } = useTheme();
 
   const iconTheme = useMemo(
     () => ({
@@ -35,4 +34,4 @@ export const IconButtonView: React.FC<IconButtonProps> = ({
   );
 };
 
-export const IconButton = observer(IconButtonView)
+export const IconButton = observer(IconButtonView);

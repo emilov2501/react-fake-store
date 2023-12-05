@@ -1,7 +1,6 @@
 import { observer } from "mobx-react";
 import React, { ReactNode } from "react";
-import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../config/settings";
+import { useTheme } from "../../hooks/useTheme";
 
 interface TextProps {
   children?: ReactNode;
@@ -10,7 +9,7 @@ interface TextProps {
 }
 
 export const TextView: React.FC<TextProps> = ({ children, weight }) => {
-  const { isDarkTheme } = useStore<SettingStore>("settingStore");
+  const { isDarkTheme } = useTheme();
 
   const styles = {
     fontWeight: weight,

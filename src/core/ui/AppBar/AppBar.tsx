@@ -1,10 +1,8 @@
 import React, { ReactElement } from "react";
+import { observer } from "mobx-react-lite";
 import { Col, Container, Row } from "react-bootstrap";
 import "./AppBar.css";
-import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../config/settings";
-import { observer } from "mobx-react-lite";
-
+import { useTheme } from "../../hooks/useTheme";
 interface AppBarProps {
   actions?: ReactElement[];
   fluid?: boolean;
@@ -14,13 +12,12 @@ interface AppBarProps {
 export const AppBarView: React.FC<AppBarProps> = ({
   actions = [],
   children,
-
   fluid = true,
 }) => {
-  const { isDarkTheme } = useStore<SettingStore>("settingStore");
+  const { isDarkTheme } = useTheme();
 
   const rowStyles = {
-    backgroundColor: isDarkTheme ? "#494949 " : "#29B6F6",
+    backgroundColor: isDarkTheme ? "#0f2a37 " : "#29B6F6",
   };
 
   return (

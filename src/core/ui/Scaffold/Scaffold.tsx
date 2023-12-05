@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 import { Container, Row } from "react-bootstrap";
-import { useStore } from "../../hooks/useStore";
-import { SettingStore } from "../../config/settings";
 import { Theme } from "../../constants/theme";
 import { observer } from "mobx-react";
+import { useTheme } from "../../hooks/useTheme";
 
 interface ScaffoldProps {
   appBar: React.ReactElement;
@@ -11,7 +10,7 @@ interface ScaffoldProps {
 }
 
 const ScaffoldView: React.FC<ScaffoldProps> = ({ appBar, body }) => {
-  const { theme } = useStore<SettingStore>("settingStore");
+  const { theme } = useTheme();
 
   const scaffoldTheme = useMemo(
     () => ({
