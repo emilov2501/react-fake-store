@@ -1,2 +1,2 @@
-export { ThemeStore } from "./store/settings.store";
+export { ThemeStore } from "./store/theme.store";
 export type { ThemeProps } from "./types/setting.types";
