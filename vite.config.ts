@@ -29,13 +29,8 @@ export default defineConfig({
   },
   server: {
     proxy,
-    host: true,
     port: 8000,
-    watch: {
-      usePolling: true,
-    },
   },
-
   plugins: [
     VitePWA({
       workbox: {
