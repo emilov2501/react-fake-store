@@ -13,7 +13,7 @@ const ProductDetailView: React.FC = () => {
   const { productId } = useParams();
   const id = parseInt(productId || "-1");
 
-  const { getProductById, product, isLoading, isError, isSuccess } =
+  const { getProductById, product, isLoading, isError } =
     useStore<ProductStore>("productStore");
 
   useQuery(["product", id], () => getProductById(id));
@@ -26,24 +26,28 @@ const ProductDetailView: React.FC = () => {
     return <div>Something went wrong!</div>;
   }
 
-  if (isSuccess) {
-    return (
-      <div className="product-detail pt-3">
-        <div className="image-wrapper">
-          <img className="image" src={product!.image}></img>
-        </div>
+  return (
+    <div className="product-detail pt-3">
+      {product && (
+        <>
+          <div className="image-wrapper">
+            <img className="image" src={product!.image}></img>
+          </div>
 
-        <div className="body pt-3">
-          <Text><Text weight={600}>Name:</Text> {product!.title}</Text>
-          <br />
-          <br />
-          <Text>
-            <Text weight={600}>Price:</Text> {product!.price}
-          </Text>
-        </div>
-      </div>
-    );
-  }
+          <div className="body pt-3">
+            <Text>
+              <Text weight={600}>Name:</Text> {product!.title}
+            </Text>
+            <br />
+            <br />
+            <Text>
+              <Text weight={600}>Price:</Text> {product!.price}
+            </Text>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export const ProductDetail = observer(ProductDetailView);

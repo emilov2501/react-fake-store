@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import * as path from "path";
 import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
+import { VitePWA } from "vite-plugin-pwa";
 
 const proxy = {
   "/api": {
@@ -12,10 +13,13 @@ const proxy = {
 };
 
 export default defineConfig({
+  root: "./",
   build: {
     sourcemap: false,
     emptyOutDir: true,
+    outDir: "dist",
   },
+  publicDir: "assets",
   preview: {
     open: true,
 
@@ -26,6 +30,26 @@ export default defineConfig({
     proxy,
   },
   plugins: [
+    VitePWA({
+      registerType: "autoUpdate",
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => {
+              return url.pathname.startsWith("/api");
+            },
+            handler: "CacheFirst" as const,
+            options: {
+              cacheName: "api-cache",
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
+    }),
     svgr({
       svgrOptions: {
         icon: true,
@@ -38,7 +62,10 @@ export default defineConfig({
   ],
   resolve: {
     alias: [
-      { find: "assets", replacement: path.resolve(__dirname, "src/assets") },
+      {
+        find: "assets",
+        replacement: path.resolve(__dirname, "public/icons"),
+      },
     ],
   },
 });

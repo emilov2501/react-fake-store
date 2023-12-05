@@ -29,6 +29,7 @@
     "ts-retrofit": "^1.19.0",
     "ts-serializable": "^3.0.44",
     "uuid": "^9.0.1",
+    "vite-plugin-pwa": "^0.17.3",
     "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
