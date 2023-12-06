@@ -1,6 +1,5 @@
-import { observer } from "mobx-react";
 import React, { ReactNode } from "react";
-import { useTheme } from "../../hooks/useTheme";
+import { useThemeStore } from "../../hooks/useTheme";
 
 interface TextProps {
   children?: ReactNode;
@@ -9,7 +8,7 @@ interface TextProps {
 }
 
 export const TextView: React.FC<TextProps> = ({ children, weight }) => {
-  const { isDarkTheme } = useTheme();
+  const { isDarkTheme } = useThemeStore();
 
   const styles = {
     fontWeight: weight,
@@ -19,4 +18,4 @@ export const TextView: React.FC<TextProps> = ({ children, weight }) => {
   return <span style={styles}>{children}</span>;
 };
 
-export const Text = observer(TextView);
+export const Text = TextView;

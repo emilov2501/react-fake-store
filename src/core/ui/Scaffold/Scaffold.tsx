@@ -1,8 +1,6 @@
 import React, { useMemo } from "react";
 import { Container, Row } from "react-bootstrap";
-import { Theme } from "../../constants/theme";
-import { observer } from "mobx-react";
-import { useTheme } from "../../hooks/useTheme";
+import { useThemeStore } from "../../hooks/useTheme";
 
 interface ScaffoldProps {
   appBar: React.ReactElement;
@@ -10,17 +8,16 @@ interface ScaffoldProps {
 }
 
 const ScaffoldView: React.FC<ScaffoldProps> = ({ appBar, body }) => {
-  const { theme } = useTheme();
+  const { isDarkTheme } = useThemeStore();
 
   const scaffoldTheme = useMemo(
     () => ({
       minHeight: "-webkit-fill-available",
-      backgroundColor:
-        theme === Theme.dark
-          ? "var(--background-dark)"
-          : "var(--background-light)",
+      backgroundColor: isDarkTheme
+        ? "var(--background-dark)"
+        : "var(--background-light)",
     }),
-    [theme]
+    [isDarkTheme]
   );
 
   return (
@@ -33,4 +30,4 @@ const ScaffoldView: React.FC<ScaffoldProps> = ({ appBar, body }) => {
   );
 };
 
-export const Scaffold = observer(ScaffoldView);
+export const Scaffold = ScaffoldView;

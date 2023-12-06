@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from "react";
 import debounce from "lodash/debounce";
-import { useStore } from "../../../../core/hooks/useStore";
-import { ProductStore } from "../store/product.store";
 import { Form } from "react-bootstrap";
+import { useProductStore } from "../store/product.controller";
 
 export const ProductSearch: React.FC = () => {
-  const { searchProduct, query } = useStore<ProductStore>("productStore");
+  const { searchProduct, query } = useProductStore();
   const [value, setValue] = useState(() => query);
 
   const debounceMutate = debounce(searchProduct, 200);

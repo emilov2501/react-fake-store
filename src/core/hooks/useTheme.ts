@@ -1,4 +1,27 @@
-import { ThemeProps, ThemeStore } from "../config/theme";
-import { DI } from "../di/di";
+import create from "zustand-store-addons";
+import { Theme } from "../constants/theme";
 
-export const useTheme = (): ThemeProps => DI.resolve<ThemeStore>("themeStore");
+interface ThemeStore {
+  isDarkTheme: boolean;
+  theme: Theme;
+
+  setTheme: (theme: Theme) => void;
+}
+
+export const useThemeStore = create<ThemeStore>(
+  (set) => ({
+    theme: Theme.dark,
+    isDarkTheme: false,
+
+    setTheme: (theme: Theme) => {
+      set({ theme: theme });
+    },
+  }),
+  {
+    computed: {
+      isDarkTheme: function () {
+        return this.theme === Theme.dark;
+      },
+    },
+  }
+);

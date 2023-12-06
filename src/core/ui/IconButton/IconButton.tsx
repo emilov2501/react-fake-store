@@ -1,8 +1,7 @@
 import React, { useMemo } from "react";
 import "./IconButton.css";
-import { Theme } from "../../constants/theme";
-import { observer } from "mobx-react";
-import { useTheme } from "../../hooks/useTheme";
+
+import { useThemeStore } from "../../hooks/useTheme";
 
 interface IconButtonProps {
   onPressed: () => void;
@@ -15,16 +14,13 @@ export const IconButtonView: React.FC<IconButtonProps> = ({
   icon: Icon,
   size = 24,
 }) => {
-  const { theme } = useTheme();
+  const { isDarkTheme } = useThemeStore();
 
   const iconTheme = useMemo(
     () => ({
-      fill:
-        theme !== Theme.dark
-          ? "var(--background-dark)"
-          : "var(--background-light)",
+      fill: !isDarkTheme ? "var(--background-dark)" : "var(--background-light)",
     }),
-    [theme]
+    [isDarkTheme]
   );
 
   return (
@@ -34,4 +30,4 @@ export const IconButtonView: React.FC<IconButtonProps> = ({
   );
 };
 
-export const IconButton = observer(IconButtonView);
+export const IconButton = IconButtonView;

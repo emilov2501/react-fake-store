@@ -1,31 +1,27 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { observer } from "mobx-react";
-
-import { useStore } from "../../../../core/hooks/useStore";
-import { ProductStore } from "../store/product.store";
-
 import "./styles/ProductDetail.styles.css";
 import { Text } from "../../../../core/ui";
+import { useProductStore } from "../store/product.controller";
+import { DataStatus } from "../../../../core/constants/status";
 
 const ProductDetailView: React.FC = () => {
   const { productId } = useParams();
   const id = parseInt(productId || "-1");
 
-  const { getProductById, product, isLoading, isError } =
-    useStore<ProductStore>("productStore");
+  const { getProductById, product, status } = useProductStore();
 
   useQuery({
     queryKey: ["product", id],
     queryFn: () => getProductById(id),
   });
 
-  if (isLoading) {
+  if (status === DataStatus.loading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (status === DataStatus.failure) {
     return <div>Something went wrong!</div>;
   }
 
@@ -53,4 +49,4 @@ const ProductDetailView: React.FC = () => {
   );
 };
 
-export const ProductDetail = observer(ProductDetailView);
+export const ProductDetail = ProductDetailView;

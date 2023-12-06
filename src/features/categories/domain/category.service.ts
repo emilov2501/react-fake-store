@@ -1,7 +1,7 @@
 import { CategoryRepository } from "./category.repository";
 
 export class CategoryService {
-  constructor(private readonly categoryRepository: CategoryRepository) {}
+  categoryRepository: CategoryRepository = new CategoryRepository();
 
   async getCategories() {
     return this.categoryRepository.getCategories();

@@ -1,24 +1,21 @@
-import { observer } from "mobx-react";
 import React, { useCallback } from "react";
-import { ProductStore } from "../store/product.store";
-import { useStore } from "../../../../core/hooks/useStore";
 import { useQuery } from "@tanstack/react-query";
-import { ProductCard } from "./ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
+
+import { ProductCard } from "./ProductCard";
 import { ProductModel } from "../../domain/product.model";
-import { generatePath, useLocation } from "react-router-dom";
+import { generatePath, useParams } from "react-router-dom";
+import { useProductStore } from "../store/product.controller";
+import { DataStatus } from "../../../../core/constants/status";
 
 const ProductListView: React.FC = () => {
-  const loc = useLocation();
+  const { category = "" } = useParams();
 
-  const currentCategory = loc.state?.cat;
-
-  const { isLoading, isError, getProductsByCategory, query, products } =
-    useStore<ProductStore>("productStore");
+  const { status, getProductsByCategory, query, products } = useProductStore();
 
   useQuery({
-    queryKey: ["products", currentCategory],
-    queryFn: () => getProductsByCategory({ category: currentCategory }),
+    queryKey: ["products", category],
+    queryFn: () => getProductsByCategory(category),
   });
 
   const toSearch = useCallback(
@@ -30,11 +27,11 @@ const ProductListView: React.FC = () => {
     [query]
   );
 
-  if (isLoading) {
+  if (status === DataStatus.loading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (status === DataStatus.failure) {
     return <div>Sory, something went wrong :(.</div>;
   }
 
@@ -56,4 +53,4 @@ const ProductListView: React.FC = () => {
   );
 };
 
-export const ProductList = observer(ProductListView);
+export const ProductList = ProductListView;

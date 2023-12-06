@@ -1,14 +1,11 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-
-import { useStore } from "../../../../core/hooks/useStore";
-import { CategoryStore } from "../../../categories/ui/store/category.store";
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useCategoryStore } from "../store/useCategoryStore";
 
 export const CategoryList: React.FC = () => {
-  const { getCategories, categories } =
-    useStore<CategoryStore>("categoryStore");
+  const { getCategories, categories } = useCategoryStore();
 
   useQuery({
     queryKey: ["categories"],
