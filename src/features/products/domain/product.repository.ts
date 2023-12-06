@@ -22,7 +22,7 @@ export class ProductRepository {
   async getProductsByCategory(category: string): Promise<ProductModel[]> {
     try {
       const response = await axios.get<ProductModel[]>(
-        `/api/products/category/${category}`
+        `/api/products/category/${category}?limit=5`
       );
       return response.data.map((product) => ProductModel.fromJSON(product));
     } catch (e) {
