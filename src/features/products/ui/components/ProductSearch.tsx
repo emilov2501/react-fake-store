@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import debounce from "lodash/debounce";
 import { Form } from "react-bootstrap";
-import { useProductStore } from "../store/product.controller";
+import { useProductStore } from "../store/useProductStore";
 
 export const ProductSearch: React.FC = () => {
   const { searchProduct, query } = useProductStore();

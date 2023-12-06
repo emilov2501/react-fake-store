@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import "./styles/ProductDetail.styles.css";
 import { Text } from "../../../../core/ui";
-import { useProductStore } from "../store/product.controller";
+import { useProductStore } from "../store/useProductStore";
 import { DataStatus } from "../../../../core/constants/status";
 
 const ProductDetailView: React.FC = () => {
@@ -18,11 +18,11 @@ const ProductDetailView: React.FC = () => {
   });
 
   if (status === DataStatus.loading) {
-    return <div>Loading...</div>;
+    return <Text>Loading...</Text>;
   }
 
   if (status === DataStatus.failure) {
-    return <div>Something went wrong!</div>;
+    return <Text>Something went wrong!</Text>;
   }
 
   return (

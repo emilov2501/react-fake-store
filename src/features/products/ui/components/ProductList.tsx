@@ -5,8 +5,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import { ProductCard } from "./ProductCard";
 import { ProductModel } from "../../domain/product.model";
 import { generatePath, useParams } from "react-router-dom";
-import { useProductStore } from "../store/product.controller";
+import { useProductStore } from "../store/useProductStore";
 import { DataStatus } from "../../../../core/constants/status";
+import { Text } from "../../../../core/ui";
 
 const ProductListView: React.FC = () => {
   const { category = "" } = useParams();
@@ -28,11 +29,11 @@ const ProductListView: React.FC = () => {
   );
 
   if (status === DataStatus.loading) {
-    return <div>Loading...</div>;
+    return <Text>Loading...</Text>;
   }
 
   if (status === DataStatus.failure) {
-    return <div>Sory, something went wrong :(.</div>;
+    return <Text>Sory, something went wrong :(.</Text>;
   }
 
   return (
